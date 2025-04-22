@@ -21,6 +21,7 @@ I can't guarantee correct operation for all possible cases due to possible diffe
 For the reference and testing purposes this repo also contains typical **xyz** KiCad-project with the structure as below:
 
 **main project files:**
+
 `/xyz.kicad_pro` (main project file)
 
 `/xyz.kicad_prl`
