@@ -22,13 +22,20 @@ For the reference and testing purposes this repo also contains typical **xyz** K
 
 **main project files:**
 `/xyz.kicad_pro` (main project file)
+
 `/xyz.kicad_prl`
+
 `/xyz.kicad_pcb` (main PCB-file)
+
 `/xyz.kicad_sch` (main/root schematic file)
 
+
 **additional schematic files (optional):**
+
 `/xyz_main.kicad_sch`
+
 `/xyz_periphery.kicad_sch`
+
 `/xyz_power.kicad_sch`
 
 
@@ -39,6 +46,17 @@ For the reference and testing purposes this repo also contains typical **xyz** K
 
 ### Version history
 
+**ver. 1b**
+
++ The tool automatically creates the backup before the renaming, but only if non-empty string was provided as the new project name.
++ A few optimizations on backup file naming and printing outputs has been made.
+
 **ver. 1a**
 
 Initial version of the tool.
+
+-----
+
+### TODO list:
+1. Improve/simplify the dependent files' renaming.
+2. Add logging (optional).

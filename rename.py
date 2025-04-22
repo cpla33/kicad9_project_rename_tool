@@ -1,23 +1,45 @@
 import os, json, uuid, shutil
+import zipfile, datetime
 
-#0. searching for the main project file
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
+def zip_folder_except_script(arg_folder_path, arg_script_name):
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M")
+    zip_name = os.path.join(arg_folder_path, f"{arg_script_name}_backup_{timestamp}.zip")
+
+    with zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, _, files in os.walk(arg_folder_path):
+            for file in files:
+                if file == arg_script_name:
+                    continue  # Skip the current script
+                full_path = os.path.join(root, file)
+                relative_path = os.path.relpath(full_path, arg_folder_path)
+                zipf.write(full_path, arcname=relative_path)
+
+    print(f"Backup created: {zip_name}")
+
+# -----------------------------------------------------------
+
+#0. searching for the main project file
 lst_files = []
 for each_file in os.listdir(SCRIPT_DIR):
     if each_file.endswith(".kicad_pro"):
         str_original_project_filename = each_file
-        print(f"Main project file found is: {each_file}")
+        print(f"Main project file is: {each_file}")
         
-        #0. Requesting the desired project name
+        #1. Requesting the desired project name
         str_new_project_name = input("Input desired project name:\n")
         
         #quitting the tool if canceled by the empty string providing
         if str_new_project_name == "":
             print("Canceled. Quitting...")
             exit()
+        else:
+            # 2. Preliminary backup of the project
+            zip_folder_except_script(SCRIPT_DIR, str_original_project_filename)
 
-        #1. getting the required information about the project from the main project file
+
+        #3. getting the required information about the project from the main project file
         with open(SCRIPT_DIR + "/" + str_original_project_filename, 'r') as file_kicad_pro:
             dict_kicad_pro = json.load(file_kicad_pro)
         
@@ -34,7 +56,7 @@ for each_file in os.listdir(SCRIPT_DIR):
                 str_original_project_name = str_original_project_filename.replace(".kicad_pro","")
 
 
-                #3. project sheets processing
+                #4. project sheets processing
                 try:
                     print("Sheets detected:")
                     new_sheets = []
@@ -71,11 +93,11 @@ for each_file in os.listdir(SCRIPT_DIR):
 
 
 
-                    #4. Replacing kicad_pro content
+                    #5. Replacing kicad_pro content
                     dict_kicad_pro["meta"]["filename"] = str_new_project_name + '.kicad_pro'
 
                     
-                    #5. Saving the updated kicad_pro file
+                    #6. Saving the updated kicad_pro file
                     with open(SCRIPT_DIR + "/" + str_new_project_name + '.kicad_pro', 'w') as file_kicad_pro:
                         json.dump(dict_kicad_pro, file_kicad_pro, indent=4)
                     
@@ -84,7 +106,7 @@ for each_file in os.listdir(SCRIPT_DIR):
 
                     # ------------------
 
-                    #6. Saving the updated kicad_pro file
+                    #7. Saving the updated kicad_pro file
                     with open(SCRIPT_DIR + "/" + str_new_project_name + '.kicad_sch', 'w') as file_kicad_sch:
                         file_kicad_sch.write(str_kicad_sch)
 
@@ -93,7 +115,7 @@ for each_file in os.listdir(SCRIPT_DIR):
 
                     # ------------------
 
-                    #7. Updating the PRL-file
+                    #8. Updating the PRL-file
                     with open(SCRIPT_DIR + "/" + str_original_project_name + '.kicad_prl', 'r') as file_kicad_prl:
                         dict_kicad_prl = json.load(file_kicad_prl)
 
@@ -107,7 +129,7 @@ for each_file in os.listdir(SCRIPT_DIR):
 
                     # ------------------
 
-                    #8. Renaming the PCB-file
+                    #9. Renaming the PCB-file
                     lst_pcb_files = []
                     for each_pcb_file in os.listdir(SCRIPT_DIR):
                         if each_pcb_file.endswith(".kicad_pcb"):
@@ -147,7 +169,7 @@ else:
 
 
 # -----------------------
-
+#10. Dependent files' renaming
 for each_sch_file in os.listdir(SCRIPT_DIR): #listing all the files in the directory
     if each_sch_file.endswith(".kicad_sch"): #processing only SCH-files
         
@@ -164,7 +186,7 @@ for each_sch_file in os.listdir(SCRIPT_DIR): #listing all the files in the direc
                         str_kicad_sch = file_kicad_sch.read()
 
                     replacement_result = str_kicad_sch.replace(each_sch_file, str_new_sch_filename + '.kicad_sch')
-                    print(replacement_result)
+                    #print(replacement_result)
                     #print(f"replaced the {each_sch_file} to the {str_new_sch_filename}.kicad_sch")
 
                     with open(SCRIPT_DIR + "/" + str_new_project_name + '.kicad_sch', 'w') as file_kicad_sch_w:
