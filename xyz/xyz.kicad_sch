@@ -1,0 +1,140 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "8bf9291b-8aae-446f-907b-ff8f228d5981")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 19.05 20.32)
+		(size 124.46 49.53)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "0cfa3cc4-d6b0-44fd-a34a-3c2f7caa53e0")
+		(property "Sheetname" "Power"
+			(at 19.05 19.6084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "xyz_power.kicad_sch"
+			(at 19.05 70.4346 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "xyz"
+				(path "/8bf9291b-8aae-446f-907b-ff8f228d5981"
+					(page "1")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 152.4 20.32)
+		(size 124.46 49.53)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "30269087-00c9-43dc-8d98-e8c531f87ada")
+		(property "Sheetname" "Periphery"
+			(at 152.4 19.6084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "xyz_periphery.kicad_sch"
+			(at 152.4 70.4346 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "xyz"
+				(path "/8bf9291b-8aae-446f-907b-ff8f228d5981"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 19.05 80.01)
+		(size 124.46 49.53)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "a86283e6-2fdb-49de-861e-ec841623c129")
+		(property "Sheetname" "Main"
+			(at 19.05 79.2984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "xyz_main.kicad_sch"
+			(at 19.05 130.1246 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "xyz"
+				(path "/8bf9291b-8aae-446f-907b-ff8f228d5981"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "0")
+		)
+	)
+	(embedded_fonts no)
+)
