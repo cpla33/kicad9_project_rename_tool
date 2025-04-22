@@ -1,0 +1,11 @@
+# Ignore all the files in any subfolders with the names ended to:
+**/*backups/*
+
+# Ignore all the files (no matter where they are located) with the extensions as below:
+**/*.db
+**/*.lck
+
+**/*.bin
+**/*.uf2
+**/*.hex
+
